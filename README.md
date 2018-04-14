@@ -1,3 +1,3 @@
 # Monero HTML
 
-Cross-platform Monero light client.
+Incomplete JavaScript version of a cross-platform Monero wallet.
