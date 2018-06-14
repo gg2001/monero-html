@@ -1,3 +1,3 @@
 # Monero HTML
 
-Incomplete JavaScript version of a cross-platform Monero wallet.
+ JavaScript client-side Monero Wallet
