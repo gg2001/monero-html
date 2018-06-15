@@ -2,17 +2,37 @@
 <html lang=en>
 <head>
     <title>The Monero Wallet - Create</title>
+    <meta charset="utf-8">
+    <script src="js/aes.js"></script>
+    <script src="js/js.cookie.js"></script>
     <script src="js/create.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 	<h1 id="index-title">The Monero Wallet</h1>
-	<p>Mnemonic: </p><p id="mnemonic"></p>
-	<p>Hexadecimal Seed: </p><p id="hexSeed"></p>
-	<p>Private Spend Key: </p><p id="privSpend"></p>
-	<p>Public Spend Key: </p><p id="pubSpend"></p>
-	<p>Private View Key: </p><p id="privView"></p>
-	<p>Public View Key: </p><p id="pubView"></p>
-	<p>Public Address: </p><p id="pubAddr"></p>
+	<p id="create-mt">Your wallet generation seed is:</p><p id="create-mnemonic"></p>
+	<p id="create-pwarning">Please save these 25 words on paper (order is important). This seed will allow you to recover your wallet.</p>
+	<ul id="create-lwarning">
+	  <li>Never dislose your seed.</li>
+	  <li>Do not store is electronically.</li>
+	</ul>
+	<p id="create-tconfirm">Your seed is important! if you lose your seed, your money will be permanently lost. To make sure that you have properly saved your seed, please type it here:</p>
+	<form method="post" name="create-form" onsubmit="return validateCreateForm()">
+  		<div>
+		    <input type="text" id="create-confirm" name="seed">
+  		</div><br>
+  		<div>
+  			<label for="create-password">Optional password to encrypt wallet keys: </label>
+		    <input type="password" id="create-password" name="password">
+  		</div>
+  		<p>Your wallet address and view key will be sent to the Open Monero server. You may use the default or switch to one of your choice.</p>
+  		<div>
+  			<label for="create-server">Open Monero server URL: </label>
+		    <input type="text" id="create-server" name="server" value="https://moneroapi.gcubed.io/">
+  		</div><br>
+  		<div>
+    		<button>Submit</button>
+  		</div>
+	</form>
 </body> 
 </html>

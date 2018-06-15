@@ -6033,8 +6033,11 @@ allRandom();
 
 
 window.onload = function () {
-var htmlmnemonic = document.getElementById("mnemonic");
+
+
+var htmlmnemonic = document.getElementById("create-mnemonic");
 htmlmnemonic.innerHTML = mnemonic;
+/*
 var htmlhexSeed = document.getElementById("hexSeed");
 htmlhexSeed.innerHTML = hexSeed;
 var htmlprivSpend = document.getElementById("privSpend");
@@ -6047,4 +6050,43 @@ var htmlpubView = document.getElementById("pubView");
 htmlpubView.innerHTML = pubView;
 var htmlpubAddr = document.getElementById("pubAddr");
 htmlpubAddr.innerHTML = pubAddr;
+*/
+
+
 }
+var testm = "tacit moisture rarest weekday iris soda eels aces assorted thorn butter onboard also rogue mirror macro noises offend pistons cell cajun hornet toyed upright macro";
+function validateCreateForm() {
+    var x = document.forms["create-form"]["seed"].value;
+    var y = document.forms["create-form"]["password"].value;
+    var serveraddress = document.forms["create-form"]["server"].value;
+    if (x !== mnemonic) {
+        alert("The seeds do not match.");
+        return false;
+    } else {
+    	var encryptedmnemonic = CryptoJS.AES.encrypt(x, y);
+    	var encryptedspend = CryptoJS.AES.encrypt(privSpend, y);
+    	var encryptedaddress = CryptoJS.AES.encrypt(pubAddr, y);
+    	// alert(encryptedmnemonic);
+    	// var decryptedmnemonic = CryptoJS.AES.decrypt(encryptedmnemonic, y);
+    	// alert(decryptedmnemonic.toString(CryptoJS.enc.Utf8));
+    	Cookies.set('mnemonic', encryptedmnemonic, { expires: 365 });
+    	Cookies.set('spendkey', encryptedspend, { expires: 365 });
+    	Cookies.set('addresstests', encryptedaddress, { expires: 365 });
+    	Cookies.set('address', pubAddr, { expires: 365 });
+    	Cookies.set('viewkey', privView, { expires: 365 });
+    	Cookies.set('server', serveraddress, { expires: 365 });
+    	window.location.replace("wallet.html");
+    	return false;
+    }
+} 
+/*
+function testingf() {
+    var x = document.forms["create-form"]["seed"].value;
+    var y = document.forms["create-form"]["password"].value;
+    	var encrypted = CryptoJS.AES.encrypt(x, y);
+    	alert(encrypted);
+    	var decrypted = CryptoJS.AES.decrypt(encrypted, y);
+    	alert(decrypted.toString(CryptoJS.enc.Utf8));
+    	return true;
+} 
+*/
